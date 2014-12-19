@@ -52,8 +52,11 @@ class CreateCartTables < ActiveRecord::Migration
 
     create_table :cart_items do |t|
       t.integer  :cart_id
+      t.integer  :sellable_id
+      t.string   :sellable_type
       t.string   :name
       t.integer  :quantity, :default => 1, :null => false
+      t.integer  :amount,   :default   => 0, :null => false
 
       t.timestamps
     end

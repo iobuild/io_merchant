@@ -10,7 +10,7 @@ module IoMerchant
       module InstanceMethods
         # Get cart item by a product/sellable
         def item_for(a_sellable)
-          cart_line_items.where(:sellable => a_sellable).first
+          cart_items.where(:sellable => a_sellable).first
         end
 
 

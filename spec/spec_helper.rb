@@ -23,3 +23,17 @@ ActiveRecord::Migration.verbose = false
 
 require 'schema'
 at_exit {ActiveRecord::Base.connection.disconnect!}
+
+
+
+def products(key, options = {})
+  values = YAML::load_file(File.expand_path("../fixtures/products.yml", __FILE__))
+  (values[key.to_s]["type"] || "Product").constantize.create! values[key.to_s].merge(options)
+end
+
+
+
+class Product < ActiveRecord::Base
+  acts_as_sellable
+
+end
