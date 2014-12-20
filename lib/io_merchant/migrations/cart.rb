@@ -1,4 +1,4 @@
-class CreateCartTables < ActiveRecord::Migration
+class CreateIoMerchantCartTables < ActiveRecord::Migration
   def self.change
 
 
