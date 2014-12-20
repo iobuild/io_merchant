@@ -16,7 +16,8 @@ module IoMerchant
 
         def update_quantity_for(a_sellable, new_quantity)
           item = item_for(a_sellable)
-          item.update_attributes(:quantity => new_quantity) if item
+          amount = a_sellable.price * new_quantity
+          item.update_attributes(:quantity => new_quantity, :amount => amount) if item
         end
 
 

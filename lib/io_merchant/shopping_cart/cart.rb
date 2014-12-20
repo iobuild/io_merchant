@@ -14,7 +14,8 @@ module IoMerchant
           cart_item.quantity = cumulative + quantity
           cart_item.save
         else
-          cart_items.create(sellable: a_sellable, amount: a_sellable.price, quantity: quantity)
+          price = a_sellable.price * quantity
+          cart_items.create(sellable: a_sellable, amount: price, quantity: quantity)
         end
       end
 
@@ -37,13 +38,13 @@ module IoMerchant
         end
       end
 
-      def remove_by_item(id)
-        cart_items.find(id).delete
+      def remove_by_item(cart_item)
+        cart_items.find(cart_item.id).delete
       end
 
 
       def amount
-        cart_items.inject(:+)
+        cart_items.inject(0){|sum, e| sum += e.amount }
       end
 
 

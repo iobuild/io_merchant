@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-rails', '~> 2.14.0'
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency 'factory_girl_rails', '~> 4.4.1'
+  spec.add_development_dependency 'database_cleaner', '~> 1.0.0'
+
 
 
   spec.add_dependency "activerecord"

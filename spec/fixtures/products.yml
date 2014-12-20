@@ -2,9 +2,9 @@
 widget:
   id: 1
   title: Super Duper Widget
-  price: 2995
+  price: 5
   
 knob:
   id: 2
   title: Shiny Knob
-  price: 399
+  price: 5
