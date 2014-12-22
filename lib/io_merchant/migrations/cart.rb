@@ -2,7 +2,7 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
   def self.change
 
 
-    create_table :addresses do |t|
+    create_table :io_addresses do |t|
       t.integer  :buyer_id
       t.string   :buyer_type
       t.string   :firstname
@@ -17,7 +17,7 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
     end
 
 
-    create_table :orders do |t|
+    create_table :io_orders do |t|
       t.string   :order_code
       t.integer  :buyer_id
       t.string   :buyer_type
@@ -32,7 +32,7 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
 
 
 
-    create_table :line_items do |t|
+    create_table :io_line_items do |t|
       t.integer  :order_id
       t.integer  :sellable_id
       t.string   :sellable_type
@@ -43,14 +43,14 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
     end
 
 
-    create_table :carts do |t|
+    create_table :io_carts do |t|
 
       t.timestamps
     end
 
 
 
-    create_table :cart_items do |t|
+    create_table :io_cart_items do |t|
       t.integer  :cart_id
       t.integer  :sellable_id
       t.string   :sellable_type

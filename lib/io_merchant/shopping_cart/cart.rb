@@ -1,7 +1,7 @@
 module IoMerchant
   module ShoppingCart
     class Cart < ActiveRecord::Base
-      self.table_name = "carts"
+      self.table_name = :io_carts
 
       has_many :cart_items, :dependent => :destroy, :class_name => "::IoMerchant::ShoppingCart::CartItem"
 

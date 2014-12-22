@@ -1,7 +1,7 @@
 module IoMerchant
   module ShoppingCart
     class CartItem < ActiveRecord::Base
-      self.table_name = "cart_items"
+      self.table_name = :io_cart_items
 
       belongs_to :sellable, :polymorphic => true
       belongs_to :cart, :class_name => "::IoMerchant::ShoppingCart::Cart"

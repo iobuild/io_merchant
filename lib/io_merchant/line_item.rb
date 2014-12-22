@@ -1,6 +1,6 @@
 module IoMerchant
   class LineItem < ActiveRecord::Base
-    self.table_name = "line_items"
+    self.table_name = :io_line_items
 
 
     belongs_to :order, :class_name => "::IoMerchant::Order"

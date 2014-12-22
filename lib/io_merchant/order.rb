@@ -1,7 +1,7 @@
 module IoMerchant
   class Order < ActiveRecord::Base
     include AASM
-    self.table_name = "orders"
+    self.table_name = :io_orders
 
     belongs_to :seller, :polymorphic => true
     belongs_to :buyer, :polymorphic => true

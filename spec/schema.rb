@@ -1,6 +1,6 @@
 require 'io_merchant/migrations/cart'
 
-CreateCartTables.change
+CreateIoMerchantCartTables.change
 
 
 ActiveRecord::Schema.define :version => 0 do
