@@ -18,7 +18,7 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
 
 
     create_table :io_orders do |t|
-      t.string   :order_code
+      t.string   :code
       t.integer  :buyer_id
       t.string   :buyer_type
       t.integer  :seller_id

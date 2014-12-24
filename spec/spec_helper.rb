@@ -37,3 +37,16 @@ class Product < ActiveRecord::Base
   acts_as_sellable
 
 end
+
+
+
+class User < ActiveRecord::Base
+  # self.inheritance_column = nil
+
+end
+
+class Buyer < User
+
+  acts_as_buyer
+end
+

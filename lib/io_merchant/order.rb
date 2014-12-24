@@ -96,14 +96,12 @@ module IoMerchant
     def guard_cancel_from_created; true; end
     def guard_cancel_from_pending; true; end
 
-    before_save :get_order_code
+    before_save :get_code
 
     class << self
 
-      # hex digest 16 char in length
-      # TODO change this to customize number schema
       def generate_unique_id
-        value = Digest::MD5.hexdigest("#{Time.now.utc.to_i}#{rand(2 ** 128)}")[0..6]
+        value = Digest::MD5.hexdigest("#{Time.now.utc.to_i}#{rand(2 ** 128)}")[0..12]
         value.encode! 'utf-8'
         value
       end
@@ -111,72 +109,21 @@ module IoMerchant
     end
 
 
-    def get_order_code
-      self.order_code ||= Order.generate_unique_id
+    def get_code
+      self.class.generate_unique_id
     end
 
-    # abstract overriden in sublcasses
-    # returns the invoice instance
-    def invoice
-      raise "deprecated as we use has_many :invoices association"
-    end
-
-    # abstract to be overriden inside puchase and sales orders
-    def build_invoice
-      raise "override in purchase_order or sales_order"
-    end
 
     def build_addresses(options={})
       raise "override in purchase_order or sales_order"
     end
 
 
-    # Same as gross_total with tax
-    def total_amount
-      self.total_amount
-    end
-
     # is the number of line items stored in the order, though not to be
     # confused by the items_count
     def line_items_count
       self.line_items.count
     end
-
-
-
-    # updates the order and all contained line_items after an address has changed
-    # or an order item was added or removed. The order can only be evaluated if the
-    # created state is active. The order is saved if it is an existing order.
-    # Returns true if evaluation happend, false if not.
-    def evaluate
-      if :created == current_state
-        self.line_items.each(&:evaluate)
-        self.calculate
-        return save(false) unless new_record?
-      end
-      false
-    end
-
-    # adds a line item or sellable to order and updates the order
-    def push(an_item_or_sellable)
-      if !an_item_or_sellable.is_a?(LineItem) && an_item_or_sellable.respond_to?(:price)
-        li = LineItem.new(:sellable => an_item_or_sellable, :order => self)
-      elsif an_item_or_sellable.is_a?(LineItem)
-        li = an_item_or_sellable
-      end
-      if li
-        self.line_items.push(li)
-        self.evaluate
-      end
-    end
-
-    protected
-
-    # Recalculates the order, adding order lines, tax and gross totals
-    def calculate
-      self.total_amount
-    end
-
 
 
   end
