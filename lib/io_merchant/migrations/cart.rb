@@ -1,5 +1,5 @@
 class CreateIoMerchantCartTables < ActiveRecord::Migration
-  def self.change
+  def change
 
 
     create_table :io_addresses do |t|
