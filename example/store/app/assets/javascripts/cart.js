@@ -1,4 +1,5 @@
-$(document).ready(function() {
+// $(document).ready(function() {
+$(document).on('ready page:load', function () {
 
   $('.add-to-cart').click(function() {
 
@@ -20,5 +21,29 @@ $(document).ready(function() {
     });
 
   });
+
+
+
+  $('.remove-cart-item').click(function() {
+
+    id = $(this).data('id')
+
+    // alert(id);
+
+    $.ajax({
+      type: 'get',
+      url: "/carts/remove_item",
+      data: {
+        id: id
+      },
+      success: function(data) {
+        $('.ajax-file').html(data)
+      },
+      error: function(data) {
+      }
+    });
+
+  });
+
 
 });

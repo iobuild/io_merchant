@@ -1,0 +1,45 @@
+
+<div class="container-fluid">
+  <div class="row">
+
+    <% cart.cart_items.each do |item| %>
+      <div class="col-md-6">
+
+        <table class="table cart-list">
+          <tr>
+            <td width='30%'>
+              <img src="/<%= item.sellable.title %>.jpg"  width="100px" height="100px" />
+            </td>
+            <td width='70%'>
+              <%= item.sellable.title %> <br />
+              单价: <%= item.sellable.price %> <br />
+              数量: <%= item.quantity %> <br />
+
+              <p>
+                <a class="btn btn-default remove-cart-item" style='margin-top: 5px;' data-id="<%= item.id %>" href="#">
+                删除
+              </a>
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+            
+        
+
+      </div>
+    <% end %>
+
+    
+
+    
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span class='pull-right'><%= cart.amount %></span>
+    </div>
+  </div>
+</div>

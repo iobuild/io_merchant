@@ -9,7 +9,7 @@
     <meta name="keywords" content="<%= @keywords if @keywords %>" />
     <meta name="title" content="<%= @title if @title %>" />
 
-    <title>YouApp <%= ' - ' + @title if @title %></title>
+    <title>Store <%= ' - ' + @title if @title %></title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'custom_as_simple', media: 'all', 'data-turbolinks-track' => true %>
@@ -35,17 +35,28 @@
         <ul class="nav nav-pills pull-right">
 
           <!-- <li class="">
-              <a href="/">Home</a>
+            <a href="/">Home</a>
           </li> -->
-      
-          <li class="<%= show_nav_active('devise/sessions', 'new') %>">
-            <% if user_signed_in? %>
-              <%= link_to t('logout'), '/users/sign_out', :method => :delete %>
-            <% else %>
-              <a href="/users/sign_in">Sign in</a>
-            <% end %>
+
+          <% if user_signed_in? %>
+          <li class="<%= show_nav_active('devise/sessions', 'new') %> dropdown">            
+
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <%= current_user.username %> 
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t('logout'), '/users/sign_out', :method => :delete %></li>
+            </ul>
               
           </li>
+          <% else %>
+          <li class="<%= show_nav_active('devise/sessions', 'new') %>">            
+            <a href="/users/sign_in">Sign in</a>
+          </li>
+          <% end %>
+
+    
 
         </ul>
         <h3 class="wordmark text-muted"><a href="/">Store</a></h3>
@@ -53,7 +64,7 @@
       </div>
   </div>
 
-  <% # if user_signed_in? %>
+  
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-7">
@@ -62,7 +73,6 @@
 
       <div class="col-md-5">
 
-        <span class="text-muted pull-right"><%# = current_user.username %></span>
         <div class="pull-right">
           <a href="/carts">
             购物车 <span id='cart-number'>(<%= show_cart_number %>)</span> 
@@ -72,7 +82,7 @@
       </div>
     </div>
   </div>
-  <% # end %>
+  
 
   <div class="container-fluid">
     <hr style="margin-top: 20px;" />
