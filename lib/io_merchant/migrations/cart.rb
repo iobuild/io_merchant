@@ -56,7 +56,6 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
       t.string   :sellable_type
       t.string   :name
       t.integer  :quantity, :default => 1, :null => false
-      t.integer  :amount,   :default   => 0, :null => false
 
       t.timestamps
     end

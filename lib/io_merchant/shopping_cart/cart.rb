@@ -14,8 +14,7 @@ module IoMerchant
           cart_item.quantity = cumulative + quantity
           cart_item.save
         else
-          price = a_sellable.price * quantity
-          cart_items.create(sellable: a_sellable, amount: price, quantity: quantity)
+          cart_items.create(sellable: a_sellable, quantity: quantity)
         end
       end
 

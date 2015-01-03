@@ -3,8 +3,10 @@ require "spec_helper"
 describe IoMerchant::ShoppingCart::Cart do
   before {
     @cart = FactoryGirl.create(:cart)
-    @cart_item_1 = FactoryGirl.create(:cart_item, :amount => 1, :cart => @cart)
-    @cart_item_2 = FactoryGirl.create(:cart_item, :amount => 2, :cart => @cart)
+    @product_1 = products(:widget1)
+    @product_2 = products(:widget2)
+    @cart_item_1 = FactoryGirl.create(:cart_item, :sellable => @product_1, :cart => @cart)
+    @cart_item_2 = FactoryGirl.create(:cart_item, :sellable => @product_2, :cart => @cart)
   }
 
   it 'cart_items length' do
@@ -44,7 +46,7 @@ describe IoMerchant::ShoppingCart::Cart do
   describe 'add product' do
 
     before {
-      @product = products(:widget)
+      @product = products(:widget3)
       @cart_new_item = @cart.add(@product, 2)
     }
 
@@ -53,7 +55,7 @@ describe IoMerchant::ShoppingCart::Cart do
     end
 
     it 'cart amount' do
-      expect(@cart.amount).to eq(13)
+      expect(@cart.amount).to eq(9)
     end
 
     it 'remove product' do
@@ -73,18 +75,18 @@ describe IoMerchant::ShoppingCart::Cart do
       end
 
       it 'cart amount' do
-        expect(@cart.amount).to eq(12)
+        expect(@cart.amount).to eq(8)
       end
     end
 
     describe 'remove item2' do
       before {
-        @cart.remove_by_item(@cart_new_item)
+        @cart.remove_by_item(@cart_item_2)
         @cart.reload
       }
 
       it 'cart amount' do
-        expect(@cart.amount).to eq(3)
+        expect(@cart.amount).to eq(7)
       end
     end
 
@@ -99,24 +101,12 @@ describe IoMerchant::ShoppingCart::Cart do
       end
 
       it 'cart amount' do
-        expect(@cart.amount).to eq(8)
+        expect(@cart.amount).to eq(6)
       end
     end
 
 
-    describe 'update cart item amount' do
-      before {
-        @cart.update_amount_for(@product, 1)
-      }
 
-      it 'cart_items length' do
-        expect(@cart.cart_items.length).to eq(3)
-      end
-
-      it 'cart amount' do
-        expect(@cart.amount).to eq(4)
-      end
-    end
 
 
   end
