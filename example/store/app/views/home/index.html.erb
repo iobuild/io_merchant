@@ -1,0 +1,19 @@
+
+<div class="container-fluid">
+  <div class="row">
+
+    <% Product.all.each do |product| %>
+    <div class="col-md-4">
+      <img src="/<%= product.title %>.jpg"  width="100px" height="100px" />
+
+      <a class="btn btn-default add-to-cart" data-id="<%= product.id %>" href="#">
+        加入购物车
+      </a>
+    </div>
+
+
+    <% end %>
+
+
+  </div>
+</div>
