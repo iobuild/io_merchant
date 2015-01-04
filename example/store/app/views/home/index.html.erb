@@ -14,9 +14,13 @@
               <%= product.title %> <br />
               单价: <%= product.price %> <br />
 
-              <p>
-                <a class="btn btn-default add-to-cart" style='margin-top: 5px;' data-id="<%= product.id %>" href="#">
+              <p style='margin-top: 5px;'>
+                <a class="btn btn-default add-to-cart" data-id="<%= product.id %>" href="#">
                 加入购物车
+              </a>
+
+              <a class="btn btn-default" href="">
+                购买
               </a>
               </p>
             </td>

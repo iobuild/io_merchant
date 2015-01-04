@@ -87,5 +87,68 @@ $(document).on('ready page:load', function () {
   });
 
 
+
+
+  $('.increase-quantity').click(function() {
+
+    id = $(this).data('id')
+
+    quantity = $('.quantity-' + id).html()
+    new_quantity = parseInt(quantity) + 1
+
+
+
+    // alert(id);
+
+    $.ajax({
+      type: 'get',
+      url: "/carts/increase_quantity",
+      data: {
+        id: id,
+        new_quantity: new_quantity
+      },
+      success: function(data) {
+        // $('.ajax-file').html(data)
+        $('.quantity-' + id).html(new_quantity)
+      },
+      error: function(data) {
+      }
+    });
+
+  });
+
+
+
+  $('.decrease-quantity').click(function() {
+
+    id = $(this).data('id')
+
+    quantity = $('.quantity-' + id).html()
+    new_quantity = parseInt(quantity) - 1
+
+    if (new_quantity == 0) {
+      return;
+    }
+
+    // alert(id);
+
+    $.ajax({
+      type: 'get',
+      url: "/carts/decrease_quantity",
+      data: {
+        id: id,
+        new_quantity: new_quantity
+      },
+      success: function(data) {
+        // $('.ajax-file').html(data)
+        $('.quantity-' + id).html(new_quantity)
+      },
+      error: function(data) {
+      }
+    });
+
+  });
+
+
 });
 

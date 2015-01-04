@@ -11,6 +11,11 @@ module IoMerchant
         self.quantity * self.sellable.price
       end
 
+      def update_quantity(new_quantity)
+        self.quantity = new_quantity
+        self.save
+      end
+
 
       module InstanceMethods
 

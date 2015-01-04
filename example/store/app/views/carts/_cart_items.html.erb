@@ -11,9 +11,16 @@
               <img src="/<%= item.sellable.title %>.jpg"  width="100px" height="100px" />
             </td>
             <td width='70%'>
-              <%= item.sellable.title %> <br />
-              单价: <%= item.sellable.price %> <br />
-              数量: <%= item.quantity %> <br />
+              <p><%= item.sellable.title %></p>
+              <p>单价: <%= item.sellable.price %> </p>
+              <p>
+              数量: 
+              <span class='quantity'>
+                <a rel="nofollow" href="#" class="increase-quantity" data-id='<%= item.id %>'>-</a>
+                <span class='quantity-<%= item.id %>'><%= item.quantity %></span>
+                <a rel="nofollow" href="#" class="decrease-quantity" data-id='<%= item.id %>'>+</a>
+              </span>
+              </p>
 
               <p>
                 <a class="btn btn-default remove-cart-item" style='margin-top: 5px;' data-id="<%= item.id %>" href="#">
@@ -39,7 +46,12 @@
 
   <div class="row">
     <div class="col-md-12">
-      <span class='pull-right'><%= cart.amount %></span>
+      <span class='pull-right'>
+        总计: <%= cart.amount %>
+        <a href="" class="btn btn-default">结账</a>
+
+      </span>
+
     </div>
   </div>
 </div>

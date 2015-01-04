@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       get 'remove_item'
+      get 'increase_quantity'
+      get 'decrease_quantity'
     end
   end
   
