@@ -4,14 +4,14 @@
 
     <% cart.cart_items.each do |item| %>
       <div class="col-md-6">
-
+        <input type="checkbox" name="items[]" class="selected" value="<%= item.id %>" />
+        <%= item.sellable.title %>
         <table class="table cart-list">
           <tr>
             <td width='30%'>
               <img src="/<%= item.sellable.title %>.jpg"  width="100px" height="100px" />
             </td>
             <td width='70%'>
-              <p><%= item.sellable.title %></p>
               <p>单价: <%= item.sellable.price %> </p>
               <p>
               数量: 
@@ -45,13 +45,22 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <% if cart.cart_items.length > 0 %>
+    <div class="col-md-12 alert alert-info">
+      <span class='pull-left'>
+        
+        <input type="checkbox" name="select-all" class="select-all" /> 全选 
+        <a href="#" class="remove-selected">删除</a>
+        
+      </span>
+
       <span class='pull-right'>
         总计: <%= cart.amount %>
-        <a href="" class="btn btn-default">结账</a>
+        <a href="" class="btn btn-default">结算</a>
 
       </span>
 
     </div>
+    <% end %>
   </div>
 </div>

@@ -150,5 +150,40 @@ $(document).on('ready page:load', function () {
   });
 
 
+
+
+  $('.select-all').click(function() {
+
+    $('.selected').prop('checked', this.checked);
+
+  });
+
+
+
+  $('.remove-selected').click(function() {
+    var items = []
+    $('.selected:checked').each(function() {
+      // alert($(this).val())
+      items.push($(this).val())
+    });
+
+
+    $.ajax({
+      type: 'get',
+      url: "/carts/remove_selected_items",
+      data: {
+        items: items,
+      },
+      success: function(data) {
+        // $('.ajax-file').html(data)
+        location.reload();
+      },
+      error: function(data) {
+      }
+    });
+
+  });
+
+
 });
 

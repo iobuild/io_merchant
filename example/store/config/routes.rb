@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'remove_item'
       get 'increase_quantity'
       get 'decrease_quantity'
+      get 'remove_selected_items'
     end
   end
   
