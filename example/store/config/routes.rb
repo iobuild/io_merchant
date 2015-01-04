@@ -23,6 +23,12 @@ Rails.application.routes.draw do
       get 'remove_selected_items'
     end
   end
+
+
+  resources :addresses
+
+
+  resources :orders
   
 
   namespace :admin do

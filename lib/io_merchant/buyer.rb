@@ -6,11 +6,10 @@ module IoMerchant
     end
 
     module ClassMethods
-
-
       def acts_as_buyer
         include IoMerchant::Buyer::InstanceMethods
         has_many :orders, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Order"
+        has_many :addresses, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Address"
       end
     end
 
@@ -30,8 +29,6 @@ module IoMerchant
       end
      
     end
-
-
 
   end
 end
