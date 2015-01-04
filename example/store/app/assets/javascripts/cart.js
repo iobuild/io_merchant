@@ -1,7 +1,8 @@
 // $(document).ready(function() {
-$(document).on('ready page:load', function () {
+// $(document).on('ready page:load', function () {
 
-  $('.add-to-cart').click(function() {
+  // $('.add-to-cart').click(function() {
+  $(document).on('click', '.add-to-cart', function(){
 
     var cart = $('.shopping-cart');
     var imgtodrag = $(this).parent('p').parent('td').parent('tr').find("img").eq(0);
@@ -64,7 +65,12 @@ $(document).on('ready page:load', function () {
 
 
 
-  $('.remove-cart-item').click(function() {
+  // $('.remove-cart-item').click(function() {
+  $(document).on('click', '.remove-cart-item', function(){
+    var answer = confirm ("是否删除?");
+    if (!answer) {
+      return;
+    }
 
     id = $(this).data('id')
 
@@ -77,8 +83,8 @@ $(document).on('ready page:load', function () {
         id: id
       },
       success: function(data) {
-        // $('.ajax-file').html(data)
-        location.reload();
+        $('.ajax-file').html(data)
+        // location.reload();
       },
       error: function(data) {
       }
@@ -89,7 +95,8 @@ $(document).on('ready page:load', function () {
 
 
 
-  $('.increase-quantity').click(function() {
+  // $('.increase-quantity').click(function() {
+  $(document).on('click', '.increase-quantity', function(){
 
     id = $(this).data('id')
 
@@ -108,8 +115,8 @@ $(document).on('ready page:load', function () {
         new_quantity: new_quantity
       },
       success: function(data) {
-        // $('.ajax-file').html(data)
-        $('.quantity-' + id).html(new_quantity)
+        $('.ajax-file').html(data)
+        // $('.quantity-' + id).html(new_quantity)
       },
       error: function(data) {
       }
@@ -119,7 +126,8 @@ $(document).on('ready page:load', function () {
 
 
 
-  $('.decrease-quantity').click(function() {
+  // $('.decrease-quantity').click(function() {
+  $(document).on('click', '.decrease-quantity', function(){
 
     id = $(this).data('id')
 
@@ -140,8 +148,8 @@ $(document).on('ready page:load', function () {
         new_quantity: new_quantity
       },
       success: function(data) {
-        // $('.ajax-file').html(data)
-        $('.quantity-' + id).html(new_quantity)
+        $('.ajax-file').html(data)
+        // $('.quantity-' + id).html(new_quantity)
       },
       error: function(data) {
       }
@@ -152,7 +160,8 @@ $(document).on('ready page:load', function () {
 
 
 
-  $('.select-all').click(function() {
+  // $('.select-all').click(function() {
+  $(document).on('click', '.select-all', function(){
 
     $('.selected').prop('checked', this.checked);
 
@@ -160,12 +169,24 @@ $(document).on('ready page:load', function () {
 
 
 
-  $('.remove-selected').click(function() {
+  // $('.remove-selected').click(function() {
+  $(document).on('click', '.remove-selected', function(){
+    
     var items = []
     $('.selected:checked').each(function() {
       // alert($(this).val())
       items.push($(this).val())
     });
+
+    if (items.length == 0) {
+      return;
+    }
+
+
+    var answer = confirm ("是否删除?");
+    if (!answer) {
+      return;
+    }
 
 
     $.ajax({
@@ -175,8 +196,8 @@ $(document).on('ready page:load', function () {
         items: items,
       },
       success: function(data) {
-        // $('.ajax-file').html(data)
-        location.reload();
+        $('.ajax-file').html(data)
+        // location.reload();
       },
       error: function(data) {
       }
@@ -185,5 +206,5 @@ $(document).on('ready page:load', function () {
   });
 
 
-});
+// });
 
