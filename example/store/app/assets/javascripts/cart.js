@@ -50,7 +50,7 @@
 
     $.ajax({
       type: 'get',
-      url: "/home/add_to_cart",
+      url: "/carts/add",
       data: {
         id: id
       },

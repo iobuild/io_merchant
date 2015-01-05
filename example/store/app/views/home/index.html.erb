@@ -1,5 +1,7 @@
 <%= render 'carts/cart_header' %>
 
+<%#= session[:cart_id] %>
+
 <div class="container-fluid">
   <div class="row">
 
@@ -16,8 +18,13 @@
               单价: <%= product.price %> <br />
 
               <p style='margin-top: 5px;'>
+                <% if user_signed_in? %>
                 <a class="btn btn-default add-to-cart" data-id="<%= product.id %>" href="#">
+                <% else %>
+                <a class="btn btn-default" href="/carts/add?id=<%= product.id %>&rel=carts">
+                <% end %>
                 加入购物车
+
               </a>
 
               <a class="btn btn-default" href="/orders">

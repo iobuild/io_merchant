@@ -1,7 +1,19 @@
 class CartsController < ApplicationController
 
+  before_filter :authenticate_user!
+
 
   def index
+  end
+
+  def add
+    product = Product.find(params[:id])
+
+    @cart.add(product)
+
+    return redirect_to '/carts' if params['rel'] == 'carts'
+
+    render :text => @cart.cart_items.length
   end
 
   def remove_item

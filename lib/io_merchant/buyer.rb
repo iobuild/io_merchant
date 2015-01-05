@@ -10,6 +10,9 @@ module IoMerchant
         include IoMerchant::Buyer::InstanceMethods
         has_many :orders, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Order"
         has_many :addresses, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Address"
+        has_one :cart, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::ShoppingCart::Cart"
+
+        validates_uniqueness_of :buyer
       end
     end
 

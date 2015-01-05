@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
-  before_filter :extract_shopping_cart
+  before_filter :extract_cart
 
 
   before_action :configure_permitted_parameters, if: :devise_controller?

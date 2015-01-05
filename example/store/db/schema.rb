@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20150103081539) do
   end
 
   create_table "io_carts", force: true do |t|
+    t.integer  "buyer_id"
+    t.string   "buyer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

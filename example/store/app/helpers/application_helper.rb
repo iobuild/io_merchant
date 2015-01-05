@@ -5,20 +5,21 @@ module ApplicationHelper
   end
 
 
-  def extract_shopping_cart
-    cart_id = session[:cart_id]
+  def extract_cart
+    return unless current_user
 
-    begin
-      @cart = IoMerchant::ShoppingCart::Cart.find(cart_id)
-    rescue
-      @cart = IoMerchant::ShoppingCart::Cart.create
-    end
+    buyer = Buyer.find(current_user.id)
+      
+    @cart = buyer.cart
+
+    p @cart
+    p '===='
+
+    return @cart if @cart
+
+    p buyer.cart.create(:buyer => buyer)
+    p '======'
     
-    session[:cart_id] = @cart.id
-  end
-
-  def show_cart_number
-    @cart.cart_items.length
   end
 
 end

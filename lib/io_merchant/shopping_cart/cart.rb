@@ -4,6 +4,7 @@ module IoMerchant
       self.table_name = :io_carts
 
       has_many :cart_items, :dependent => :destroy, :class_name => "::IoMerchant::ShoppingCart::CartItem"
+      belongs_to :buyer, :polymorphic => true
 
 
       def add(a_sellable, quantity = 1)
@@ -16,6 +17,11 @@ module IoMerchant
         else
           cart_items.create(sellable: a_sellable, quantity: quantity)
         end
+      end
+
+
+      def get_number
+        self.cart_items.length
       end
 
 

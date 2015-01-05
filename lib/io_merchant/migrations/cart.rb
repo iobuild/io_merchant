@@ -44,6 +44,8 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
 
 
     create_table :io_carts do |t|
+      t.integer  :buyer_id
+      t.string   :buyer_type
 
       t.timestamps
     end

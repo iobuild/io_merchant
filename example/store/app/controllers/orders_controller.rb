@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_filter :check_address
+  before_filter :authenticate_user!, :check_address
 
   def check_address
     buyer = Buyer.find(current_user.id)
