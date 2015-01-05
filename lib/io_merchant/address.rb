@@ -7,6 +7,5 @@ module IoMerchant
 
     validates_presence_of :street, :province
 
-
   end
 end

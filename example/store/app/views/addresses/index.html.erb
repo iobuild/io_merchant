@@ -6,12 +6,46 @@
 
       <h3>请先设置收货地址</h3>
 
-
-      <% @addresses.each do |address| %>
       <div class="form-group"> 
-        <% if address.is_default %>
-        使用当前地址: 
-        <% end %>
+        <a href="/addresses/new" class="btn btn-primary">
+          创建新的地址
+        </a>
+
+      </div>
+
+
+      <%= simple_form_for(@default_address, :url => "/addresses/select_default", :html => { :method => 'post' }) do |f| %>
+
+      <p>
+
+        <b>使用当前地址: </b>
+        <input type="radio" name="address_id" value="<%= @default_address.id %>" checked />
+        <%= @default_address.province %>
+        <%= @default_address.city %>
+        <%= @default_address.sub_city %>
+        <%= @default_address.street %>
+
+
+        
+
+      </p>
+
+      
+
+
+      <p>
+
+        <b>选择其它地址: </b>
+      </p>
+
+      <% 
+        @addresses.each do |address| 
+          next if address == @default_address
+      %>
+
+      <div class="form-group"> 
+
+        <input type="radio" name="address_id" value="<%= address.id %>" />
         
         <%= address.province %>
         <%= address.city %>
@@ -23,18 +57,16 @@
       <% end %>
 
 
-      <div class="form-group"> 
-        <a href="/addresses/new" class="btn btn-primary">
-          重新选择其它地址
-        </a>
+      
 
+      <div class="form-group">       
+        <div class="controls">
+          <input type="submit" class="btn btn-lg btn-primary" name="submit" value="下一步" />
+          <%#= f.submit '下一步', :class => 'btn btn-lg btn-primary' %>
+        </div>
       </div>
 
-      <div class="form-group"> 
-        <a href="/orders" class="btn btn-success">
-          下一步
-        </a>
-      </div>
+      <% end %>
 
 
     </div>

@@ -42,7 +42,6 @@ end
 
 class User < ActiveRecord::Base
   # self.inheritance_column = nil
-
 end
 
 class Buyer < User

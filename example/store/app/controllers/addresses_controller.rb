@@ -18,6 +18,10 @@ class AddressesController < ApplicationController
 
   def index
     @addresses = @buyer.addresses
+
+    redirect_to '/addresses/new' if @addresses.length == 0
+
+    @default_address = @buyer.default_address
   end
 
 
@@ -55,10 +59,27 @@ class AddressesController < ApplicationController
 
   def create
     @address = @buyer.addresses.build(address_params)
+    @buyer.set_unique_default(@address)
 
     return redirect_to "/addresses" if @address.save
 
     render 'new'
+  end
+
+
+  def select_default
+    address_id = params[:address_id]
+    address = @buyer.addresses.find(address_id)
+    p address
+    p '===='
+    @buyer.set_unique_default(address)
+
+    p @buyer.default_address
+    p '-----'
+
+    redirect_to '/addresses'
+    # render :nothing => true
+
   end
 
 

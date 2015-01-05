@@ -11,12 +11,37 @@ module IoMerchant
         has_many :orders, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Order"
         has_many :addresses, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::Address"
         has_one :cart, :as => :buyer, :dependent => :destroy, :class_name => "::IoMerchant::ShoppingCart::Cart"
-
-        validates_uniqueness_of :buyer
       end
     end
 
     module InstanceMethods
+
+      def set_unique_default(address)
+        self.addresses.each do |item|
+          if item.id == address.id
+            address.is_default = true
+            address.save
+            next
+          end
+
+          item.is_default = false
+          item.save
+
+        end
+
+      end
+
+
+      def default_address
+        if self.addresses.where(:is_default => true).exists?
+          return self.addresses.where(:is_default => true).first
+        end
+
+        a = self.addresses.first
+        self.set_unique_default(a)
+        a
+      end
+
 
       def purchase(cart)
         order = Order.create(:buyer => self, :total_amount => cart.amount)

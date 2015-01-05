@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     collection do
       get 'get_cities'
       get 'get_sub_cities'
+      post 'select_default'
     end
   end
 
