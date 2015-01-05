@@ -27,7 +27,12 @@ Rails.application.routes.draw do
   end
 
 
-  resources :addresses
+  resources :addresses do
+    collection do
+      get 'get_cities'
+      get 'get_sub_cities'
+    end
+  end
 
 
   resources :orders

@@ -12,13 +12,11 @@ module ApplicationHelper
       
     @cart = buyer.cart
 
-    p @cart
-    p '===='
-
     return @cart if @cart
 
-    p buyer.cart.create(:buyer => buyer)
-    p '======'
+    IoMerchant::ShoppingCart::Cart.create(:buyer => buyer)
+
+    # buyer.cart.create(:buyer => buyer)
     
   end
 

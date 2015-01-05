@@ -9,6 +9,7 @@ class CreateIoMerchantCartTables < ActiveRecord::Migration
       t.string   :lastname
       t.string   :province
       t.string   :city
+      t.string   :sub_city
       t.string   :street
       t.boolean  :is_default, :default => true
       t.datetime :canceled_at
