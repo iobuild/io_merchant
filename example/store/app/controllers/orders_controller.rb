@@ -5,16 +5,15 @@ class OrdersController < ApplicationController
   def check_address
     @buyer = Buyer.find(current_user.id)
 
+     add_product_into_cart
+
     redirect_to "/addresses/new" if @buyer.has_no_address?
   end
 
 
   def add_product
-    session[:shopping_product_id] = params[:product_id] if params[:product_id]
-    @cart = @buyer.cart
-
-    product = Product.find(session[:shopping_product_id])
-    @cart.add(product)
+    
+    add_product_into_cart
 
     redirect_to '/orders'
   end
@@ -39,6 +38,17 @@ class OrdersController < ApplicationController
 
     
   end
+
+
+  private
+    def add_product_into_cart
+      session[:shopping_product_id] = params[:product_id] if params[:product_id]
+
+      product = Product.find(session[:shopping_product_id])
+      return if @cart.item_for(product.id)
+      
+      @cart.add(product)
+    end
 
 
 

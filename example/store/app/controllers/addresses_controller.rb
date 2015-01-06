@@ -36,7 +36,7 @@ class AddressesController < ApplicationController
     @provinces = @areas.keys
 
     # render :nothing => true
-    redirect_to '/orders'
+    
   end
 
 
@@ -65,9 +65,7 @@ class AddressesController < ApplicationController
     @address = @buyer.addresses.build(address_params)
     @buyer.set_unique_default(@address)
 
-    return redirect_to "/addresses" if @address.save
-
-    render 'new'
+    redirect_to '/orders'
   end
 
 
