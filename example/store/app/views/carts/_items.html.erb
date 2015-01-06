@@ -1,10 +1,5 @@
-<%= render 'carts/cart_header' %>
-
-<div class="container-fluid">
-  <div class="row">
-
     <% cart.cart_items.each do |item| %>
-      <div class="col-md-6">
+      <div class="col-md-6 cart-item-<%= item.id %>">
         <input type="checkbox" name="items[]" class="selected" value="<%= item.id %>" />
         <%= item.sellable.title %>
         <table class="table cart-list">
@@ -39,32 +34,3 @@
 
       </div>
     <% end %>
-
-    
-
-    
-
-
-  </div>
-
-  <div class="row">
-    <% if cart.cart_items.length > 0 %>
-    <div class="col-md-12" role="alert">
-
-        <span class='pull-left'>
-          
-          <input type="checkbox" name="select-all" class="select-all" /> 全选 
-          <a href="#" class="remove-selected">删除</a>
-          
-        </span>
-
-        <span class='pull-right'>
-          总计: <span id='total-amount'><%= cart.amount %></span>
-          <a href="/orders" class="btn btn-default">结算</a>
-
-        </span>
-
-    </div>
-    <% end %>
-  </div>
-</div>

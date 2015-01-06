@@ -94,6 +94,11 @@
 
     <%= render 'layouts/messages' %>
 
+    <% if params[:controller] != 'orders' %>
+    <%= render 'carts/cart_header' %>
+    <% end %>
+
+
     <%= yield %>
 
 

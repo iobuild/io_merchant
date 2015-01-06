@@ -1,50 +1,6 @@
+<div class="ajax-file">
 
+    <%= render 'carts/items', :cart => @cart %>
+    <%= render 'carts/cart_footer', :cart => @cart %>
 
-    <% @cart.cart_items.each do |item| %>
-      <div class="col-md-6">
-        <table class="table cart-list">
-          <tr><td colspan="2"><%= item.sellable.title %></td></tr>
-          <tr>
-            <td width='30%'>
-              <img src="/<%= item.sellable.title %>.jpg"  width="100px" height="100px" />
-            </td>
-            <td width='70%'>
-              <p>单价: <%= item.sellable.price %> </p>
-              <p>
-              数量: 
-              <span class='quantity'>
-                <a rel="nofollow" href="#" class="increase-quantity" data-id='<%= item.id %>'>-</a>
-                <span class='quantity-<%= item.id %>'><%= item.quantity %></span>
-                <a rel="nofollow" href="#" class="decrease-quantity" data-id='<%= item.id %>'>+</a>
-              </span>
-              </p>
-
-
-              <p>总价: <span id='item-amount-<%= item.id %>'><%= item.amount %></span></p>
-
-              <p>
-                <a class="btn btn-default remove-cart-item" data-id="<%= item.id %>" href="#">
-                删除
-              </a>
-              </p>
-            </td>
-          </tr>
-        </table>
-        
-            
-        
-
-      </div>
-    <% end %>
-
-
-    <div class="col-md-12" role="alert">
-
-
-        <span class='pull-right'>
-          总计: <span id='total-amount'><%= @cart.amount %></span>
-          <a href="/orders" class="btn btn-default">结算</a>
-
-        </span>
-
-    </div>
+</div>

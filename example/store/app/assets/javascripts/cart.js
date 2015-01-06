@@ -85,6 +85,7 @@
       success: function(data) {
         $('.ajax-file').html(data)
         // location.reload();
+        // $('.cart-item-' + id).remove()
       },
       error: function(data) {
       }

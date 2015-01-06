@@ -42,11 +42,12 @@ class OrdersController < ApplicationController
 
   private
     def add_product_into_cart
-      session[:shopping_product_id] = params[:product_id] if params[:product_id]
+      return unless params[:product_id]
+      session[:shopping_product_id] = params[:product_id]
 
       product = Product.find(session[:shopping_product_id])
       return if @cart.item_for(product.id)
-      
+
       @cart.add(product)
     end
 
