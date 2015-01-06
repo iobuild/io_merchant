@@ -72,6 +72,8 @@ class AddressesController < ApplicationController
 
 
   def select_default
+    return redirect_to '/orders' if params[:address_id].blank?
+
     address_id = params[:address_id]
     address = @buyer.addresses.find(address_id)
     @buyer.set_unique_default(address)
