@@ -24,7 +24,7 @@ class AddressesController < ApplicationController
 
     @addresses = @buyer.addresses
 
-    redirect_to '/addresses/new' if @addresses.length == 0
+    redirect_to '/addresses/new' if @buyer.has_no_address?
 
     @default_address = @buyer.default_address
   end
@@ -36,6 +36,7 @@ class AddressesController < ApplicationController
     @provinces = @areas.keys
 
     # render :nothing => true
+    redirect_to '/orders'
   end
 
 
@@ -73,14 +74,9 @@ class AddressesController < ApplicationController
   def select_default
     address_id = params[:address_id]
     address = @buyer.addresses.find(address_id)
-    p address
-    p '===='
     @buyer.set_unique_default(address)
 
-    p @buyer.default_address
-    p '-----'
-
-    redirect_to '/addresses'
+    redirect_to '/orders'
     # render :nothing => true
 
   end

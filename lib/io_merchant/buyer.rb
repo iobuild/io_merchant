@@ -16,6 +16,10 @@ module IoMerchant
 
     module InstanceMethods
 
+      def has_no_address?
+        self.addresses.length == 0
+      end
+
       def set_unique_default(address)
         self.addresses.each do |item|
           if item.id == address.id

@@ -20,4 +20,14 @@ module ApplicationHelper
     
   end
 
+
+  def show_paid_products(type)
+    case type
+    when 'product'
+      render 'orders/product'
+    when 'cart'
+      render 'orders/cart'
+    end
+  end
+
 end

@@ -36,7 +36,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :orders
+  resources :orders do
+    collection do
+      get 'add_product'
+    end
+  end
   
 
   namespace :admin do

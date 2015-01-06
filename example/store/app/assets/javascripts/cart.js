@@ -115,8 +115,10 @@
         new_quantity: new_quantity
       },
       success: function(data) {
-        $('.ajax-file').html(data)
-        // $('.quantity-' + id).html(new_quantity)
+        // $('.ajax-file').html(data)
+        $('.quantity-' + id).html(new_quantity)
+        $('#total-amount').html(data['cart_amount'])
+        $('#item-amount-' + id).html(data['item_amount'])
       },
       error: function(data) {
       }
@@ -148,8 +150,10 @@
         new_quantity: new_quantity
       },
       success: function(data) {
-        $('.ajax-file').html(data)
-        // $('.quantity-' + id).html(new_quantity)
+        // $('.ajax-file').html(data)
+        $('.quantity-' + id).html(new_quantity)
+        $('#total-amount').html(data['cart_amount'])
+        $('#item-amount-' + id).html(data['item_amount'])
       },
       error: function(data) {
       }

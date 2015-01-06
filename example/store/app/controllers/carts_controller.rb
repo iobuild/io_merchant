@@ -4,6 +4,10 @@ class CartsController < ApplicationController
 
 
   def index
+    if session[:shopping_product_id]
+      session.delete(:shopping_product_id)
+    end
+    
   end
 
   def add
@@ -43,14 +47,16 @@ class CartsController < ApplicationController
     cart_item = IoMerchant::ShoppingCart::CartItem.find(params[:id])
     cart_item.update_quantity(params[:new_quantity])
 
-    render :template => "carts/_cart_items", :locals => {:cart => @cart}, :layout => false
+    # render :template => "carts/_cart_items", :locals => {:cart => @cart}, :layout => false
+    render :json => {:cart_amount => @cart.amount, :item_amount => cart_item.amount}
   end
 
   def decrease_quantity
     cart_item = IoMerchant::ShoppingCart::CartItem.find(params[:id])
     cart_item.update_quantity(params[:new_quantity])
 
-    render :template => "carts/_cart_items", :locals => {:cart => @cart}, :layout => false
+    # render :template => "carts/_cart_items", :locals => {:cart => @cart}, :layout => false
+    render :json => {:cart_amount => @cart.amount, :item_amount => cart_item.amount}
   end
 
 

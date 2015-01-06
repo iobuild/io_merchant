@@ -9,7 +9,7 @@
 
       <% 
         @addresses.each do |address| 
-          next if address == @default_address
+          next if address.id == @default_address.id
       %>
 
       <div class="form-group"> 
