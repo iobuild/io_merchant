@@ -34,11 +34,13 @@
     <div id="nav">
       <div class="container-fluid">
         <div class="masthead">
+
+
           <ul class="nav nav-pills pull-right">
 
-            <!-- <li class="">
-              <a href="/">Home</a>
-            </li> -->
+            <li class="">
+              <a href="/">浏览商品</a>
+            </li>
 
             <% if user_signed_in? %>
             <li class="<%= show_nav_active('devise/sessions', 'new') %> dropdown">            
@@ -61,9 +63,11 @@
       
 
           </ul>
+
           <h3 class="wordmark text-muted"><a href="/">Store</a></h3>
+          
         </div>
-        </div>
+      </div>
     </div>
 
     
@@ -75,8 +79,7 @@
 
         <div class="col-md-5">
 
-          <div class="pull-right shopping-cart">
-            
+          <div class="pull-right">
           </div>
           
         </div>
