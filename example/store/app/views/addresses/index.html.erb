@@ -18,10 +18,13 @@
 
 
       <ul role="tablist" class="nav nav-tabs" id="address_tab">
+        <% if @buyer.addresses.length >= 2 %>
         <li class="active">
           <a href="#" data-id='1'>选择其它地址</a>
         </li>
-        <li>
+        <% end %>
+        
+        <li <% if @buyer.addresses.length < 2 %> class="active" <% end %> >
           <a href="#" data-id='2'>创建新地址</a>
         </li>
       

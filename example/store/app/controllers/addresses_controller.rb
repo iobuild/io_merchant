@@ -32,9 +32,7 @@ class AddressesController < ApplicationController
 
   def new
     load_data
-
-    @address = IoMerchant::Address.new
-
+    @new_address = IoMerchant::Address.new
     @provinces = @areas.keys
 
     # render :nothing => true
