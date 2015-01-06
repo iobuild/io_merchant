@@ -17,6 +17,11 @@ class AddressesController < ApplicationController
   end
 
   def index
+    load_data
+    @new_address = IoMerchant::Address.new
+    @provinces = @areas.keys
+
+
     @addresses = @buyer.addresses
 
     redirect_to '/addresses/new' if @addresses.length == 0

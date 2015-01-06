@@ -62,3 +62,24 @@
     });
 
   });
+
+
+
+  $(document).on('click', '#address_tab a', function(e){
+    e.preventDefault()
+    $(this).tab('show')
+
+    text = $(this).data('id')
+    if (text == '1') {
+      $('#select-address').show()
+      $('#new-address').hide()
+    }
+
+    if (text == '2') {
+      $('#select-address').hide()
+      $('#new-address').show()
+    }
+
+  })
+
+

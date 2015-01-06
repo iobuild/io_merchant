@@ -1,21 +1,10 @@
-<%= render 'carts/cart_header' %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
-
-      <h3>请先设置收货地址</h3>
-
-      <div class="form-group"> 
-        <a href="/addresses/new" class="btn btn-primary">
-          创建新的地址
-        </a>
-
-      </div>
+    <div class="col-md-12">
 
 
-      <%= simple_form_for(@default_address, :url => "/addresses/select_default", :html => { :method => 'post' }) do |f| %>
-
+    
       <p>
 
         <b>使用当前地址: </b>
@@ -25,48 +14,29 @@
         <%= @default_address.sub_city %>
         <%= @default_address.street %>
 
-
-        
-
       </p>
+
+
+      <ul role="tablist" class="nav nav-tabs" id="address_tab">
+        <li class="active">
+          <a href="#" data-id='1'>选择其它地址</a>
+        </li>
+        <li>
+          <a href="#" data-id='2'>创建新地址</a>
+        </li>
+      
+      </ul>
 
       
 
-
-      <p>
-
-        <b>选择其它地址: </b>
-      </p>
-
-      <% 
-        @addresses.each do |address| 
-          next if address == @default_address
-      %>
-
-      <div class="form-group"> 
-
-        <input type="radio" name="address_id" value="<%= address.id %>" />
-        
-        <%= address.province %>
-        <%= address.city %>
-        <%= address.sub_city %>
-        <%= address.street %>
-        
-
-      </div>
-      <% end %>
-
-
-      
-
-      <div class="form-group">       
-        <div class="controls">
-          <input type="submit" class="btn btn-lg btn-primary" name="submit" value="下一步" />
-          <%#= f.submit '下一步', :class => 'btn btn-lg btn-primary' %>
-        </div>
+      <div id="select-address" <% if @buyer.addresses.length < 2 %> style="display: none;" <% end %>>
+        <%= render 'addresses/select_default' %>
       </div>
 
-      <% end %>
+
+      <div id="new-address" <% if @buyer.addresses.length >= 2 %> style="display: none;" <% end %>>
+        <%= render 'addresses/new' %>
+      </div>
 
 
     </div>
