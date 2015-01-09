@@ -66,6 +66,8 @@ gem 'io_merchant', :git => 'git://github.com/iobuild/io_merchant.git'
 
 gem 'alipay'
 
+gem 'unicorn'
+
 
 
 group :development, :test do
