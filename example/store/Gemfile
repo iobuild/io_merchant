@@ -60,7 +60,9 @@ gem 'jquery-turbolinks'
 
 
 
-gem "io_merchant", :path => "~/www/iobuild/io_merchant"
+# gem "io_merchant", :path => "../../"
+gem 'io_merchant', :git => 'git://github.com/iobuild/io_merchant.git'
+
 
 gem 'alipay'
 
