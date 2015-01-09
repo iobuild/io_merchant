@@ -20,7 +20,7 @@
               <p>总价: <span id='item-amount-<%= @cart_item.id %>'><%= @cart_item.amount %></span></p>
 
               <p>
-                <a class="btn btn-default" href="/">
+                <a class="btn btn-default" href="<%= @payment_url %>">
                   支付
                 </a>
               </p>

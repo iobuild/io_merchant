@@ -12,7 +12,7 @@
           总计: <span id='total-amount'><%= cart.amount %></span>
 
           <% if params[:controller] == 'orders' %>
-          <a href="/payment" class="btn btn-default">支付</a>
+          <a href="<%= @payment_url %>" class="btn btn-default">支付</a>
           <% else %>
           <a href="/orders" class="btn btn-default">购买</a>
           <% end %>

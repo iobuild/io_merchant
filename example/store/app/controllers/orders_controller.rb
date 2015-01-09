@@ -36,6 +36,21 @@ class OrdersController < ApplicationController
       
     end
 
+    options = {
+      :out_trade_no      => '20130801000001',         # 20130801000001
+      :subject           => 'Writings.io Base Account x 12',   # Writings.io Base Account x 12
+      :logistics_type    => 'DIRECT',
+      :logistics_fee     => '0',
+      :logistics_payment => 'SELLER_PAY',
+      :price             => '10.00',
+      :quantity          => 12,
+      :discount          => '20.00',
+      :return_url        => 'https://writings.io/orders/20130801000001', # https://writings.io/orders/20130801000001
+      :notify_url        => 'https://writings.io/orders/20130801000001/alipay_notify'  # https://writings.io/orders/20130801000001/alipay_notify
+    }
+
+    @payment_url = Alipay::Service.create_partner_trade_by_buyer_url(options)
+
     
   end
 

@@ -38,6 +38,7 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.6.0)
       activerecord (>= 3.0)
+    alipay (0.3.0)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (4.0.2.2)
       execjs
@@ -180,6 +181,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alipay
   autoprefixer-rails
   awesome_nested_set
   bootstrap-sass
